@@ -12,9 +12,9 @@ app.get('/version', (req, res) => {
 })
 
 app.get('/health', (req, res) => {
-// eslint-disable-next-line no-constant-condition
-if (true) throw('error...  ')
-  res.send('ok')
+  // eslint-disable-next-line no-constant-condition
+  if (true) throw('error...  ')
+  res.send('ok') // Fixed: 2 spaces indentation (same level as if)
 })
 
 app.listen(PORT, () => {
