@@ -8,13 +8,11 @@ const PORT = process.env.PORT || 5001 // Updated to your port
 app.use(express.static('dist'))
 
 app.get('/version', (req, res) => {
-  res.send('1') // Change this later to test new deployments
+  res.send('2') // Updated to confirm new deployment
 })
 
 app.get('/health', (req, res) => {
-  // eslint-disable-next-line no-constant-condition
-  if (true) throw('error...  ')
-  res.send('ok') // Fixed: 2 spaces indentation (same level as if)
+  res.send('ok')
 })
 
 app.listen(PORT, () => {
