@@ -26,5 +26,9 @@ jobs:
           command: npm run test:e2e
           start: npm run start-prod
           wait-on: 'http://localhost:5001'
+      - name: Debug secrets
+        run: |
+          echo "Service ID: ${{ secrets.RENDER_SERVICE_ID }}"
+          echo "Deploy Key: ${{ secrets.RENDER_DEPLOY_KEY }}"
       - name: Trigger deployment to Render
         run: curl "https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_DEPLOY_KEY }}"
