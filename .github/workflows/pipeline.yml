@@ -34,7 +34,7 @@ jobs:
           echo "Service ID: ${{ secrets.RENDER_SERVICE_ID }}"
           echo "Deploy Key: ${{ secrets.RENDER_DEPLOY_KEY }}"
       - name: Trigger deployment to Render
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' && !contains(github.event.commits.*.message, '#skip') }}
         run: curl "https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_DEPLOY_KEY }}"
   tag_release:
     needs: [simple_deployment_pipeline]
@@ -42,7 +42,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Bump version and push tag
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' && !contains(github.event.commits.*.message, '#skip') }}
         uses: anothrNick/github-tag-action@f278d49d30cdd8775cc3e7dd00b5ee11686ee297
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
