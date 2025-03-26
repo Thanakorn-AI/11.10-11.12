@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 5001 // Updated to your port
 app.use(express.static('dist'))
 
 app.get('/version', (req, res) => {
-  res.send('2.3') // Change to 2.3
+  res.send('2.5') // Change to 2.5
 })
 
 app.get('/health', (req, res) => {
