@@ -34,4 +34,5 @@ jobs:
           echo "Service ID: ${{ secrets.RENDER_SERVICE_ID }}"
           echo "Deploy Key: ${{ secrets.RENDER_DEPLOY_KEY }}"
       - name: Trigger deployment to Render
+        if: ${{ github.event_name == 'push' }}
         run: curl "https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_DEPLOY_KEY }}"
