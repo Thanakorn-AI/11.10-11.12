@@ -1,5 +1,5 @@
 // full-stack-open-pokedex/app.js
-// Test direct push
+// Test direct push after disabling admin bypass
 const express = require('express')
 const app = express()
 
