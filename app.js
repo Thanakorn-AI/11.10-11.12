@@ -1,5 +1,6 @@
 // full-stack-open-pokedex/app.js
 // Test direct push after disabling admin bypass
+console.log("This will fail linting");
 const express = require('express')
 const app = express()
 
