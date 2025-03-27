@@ -1,5 +1,4 @@
 // full-stack-open-pokedex/src/App.jsx
-const unusedVariable = "This will cause a linting error";
 import React from 'react'
 import { Routes, Route, useMatch } from 'react-router-dom'
 import { useApi } from './useApi'
