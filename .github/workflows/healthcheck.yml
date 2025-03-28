@@ -1,0 +1,43 @@
+# 11.10-11.12/.github/workflows/healthcheck.yml
+name: Health check
+
+on:
+  # For initial testing, enable manual triggering
+  workflow_dispatch:
+  
+  # Schedule to run daily at midnight
+  schedule:
+    - cron: '0 0 * * *'  # Runs at midnight every day
+
+jobs:
+  health_check:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check site health
+        uses: jtalk/url-health-check-action@v3
+        with:
+          # Replace with your actual deployed application URL
+          url: https://one1-10-11-12.onrender.com
+          # Fail if return code is not 2xx
+          follow-redirect: true
+          max-attempts: 3
+          retry-delay: 5s
+          # Notify on failure
+      
+      - name: Notify Discord on Success
+        if: ${{ success() }}
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          status: success
+          title: "Health Check Passed"
+          description: "✅ Application is up and running"
+      
+      - name: Notify Discord on Failure
+        if: ${{ failure() }}
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          status: failure
+          title: "Health Check Failed"
+          description: "❌ Application health check failed - site might be down!"
