@@ -1,13 +1,15 @@
 # 11.10-11.12/.github/workflows/healthcheck.yml
 name: Health check
+# DISABLED: Workflow temporarily disabled after exercise completion
+# To re-enable, uncomment the "on:" section below
 
-on:
-  # For initial testing, enable manual triggering
-  workflow_dispatch:
-  
-  # Schedule to run daily at midnight
-  schedule:
-    - cron: '0 0 * * *'  # Runs at midnight every day
+# on:
+#   # For initial testing, enable manual triggering
+#   workflow_dispatch:
+#   
+#   # Schedule to run daily at midnight
+#   # schedule:
+#   #   - cron: '0 0 * * *'  # Runs at midnight every day
 
 jobs:
   health_check:
